@@ -14,3 +14,11 @@ spring:
 # 日志文件配置路径
 logging:
   config: classpath:log4j2-dev.xml
+
+swagger:
+  title: "AI Study System content management"
+  description: "The Content management system manages information related to the course"
+  base-package: com.AIStudySystem.content
+  enabled: true
+  version: 1.0.0
+

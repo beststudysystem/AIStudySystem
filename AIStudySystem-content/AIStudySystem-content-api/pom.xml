@@ -50,10 +50,15 @@
         </dependency>
 
         <!-- Spring Boot 集成 swagger -->
+<!--        <dependency>-->
+<!--            <groupId>com.spring4all</groupId>-->
+<!--            <artifactId>swagger-spring-boot-starter</artifactId>-->
+<!--            <version>1.9.0.RELEASE</version>-->
+<!--        </dependency>-->
+        <!-- Spring Boot 集成 swagger -->
         <dependency>
             <groupId>com.spring4all</groupId>
             <artifactId>swagger-spring-boot-starter</artifactId>
-            <version>1.9.0.RELEASE</version>
         </dependency>
 
         <dependency>
