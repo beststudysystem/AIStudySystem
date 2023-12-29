@@ -10,3 +10,67 @@ Content-Type: application/json
 
 ### 查询课程分类
 GET {{content_host}}/content/course-category/tree-nodes
+
+### 新增课程
+POST {{content_host}}/content/course/
+Content-Type: application/json
+
+{
+  "charge": "201001",
+  "price": 101,
+  "originalPrice":100,
+  "qq": "22333",
+  "wechat": "223344",
+  "phone": "13333333",
+  "validDays": 365,
+  "mt": "1-1",
+  "st": "1-1-1",
+  "name": "",
+  "pic": "fdsf",
+  "teachmode": "200002",
+  "users": "初级人员",
+  "tags": "tagstagstags",
+  "grade": "204001",
+  "description": "测试课程测试课程测试课程测试课程测试课程"
+}
+
+### 查询课程
+GET {{content_host}}//content/course/40
+Content-Type: application/json
+
+### 查询某个课程的课程计划
+GET {{content_host}}/content/teachplan/117/tree-nodes
+
+### 新增课程计划--章
+POST {{content_host}}/content/teachplan
+Content-Type: application/json
+
+{
+  "courseId" : 117,
+  "parentid": 279,
+  "grade" : 1,
+  "pname" : "JASPER 子新章名称"
+}
+
+### 课程课程计划,需要从数据库找到修改的课程计划id
+POST {{content_host}}/content/teachplan
+Content-Type: application/json
+
+{
+  "changeDate" : null,
+  "courseId" : 117,
+  "cousePubId" : null,
+  "createDate" : null,
+  "ctlBarShow" : false,
+  "ctlEditTitle" : true,
+  "endTime" : null,
+  "grade" : "2",
+  "isPreview" : "1",
+  "mediaType" : "",
+  "orderby" : 1,
+  "parentid" : 279,
+  "pname" : "JASPER 第1节修改名称",
+  "startTime" : null,
+  "status" : null,
+  "teachPlanId" : 240
+}
