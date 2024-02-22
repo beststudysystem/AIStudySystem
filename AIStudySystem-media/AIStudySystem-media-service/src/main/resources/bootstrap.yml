@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: media-service
+  cloud:
+    nacos:
+      server-addr: aistudysystem-nacos-server:8848  # 在/etc/hosts中配置
+      discovery:
+        namespace: ${spring.profiles.active}
+        group: AIStudySystem-project
+      config:
+        namespace: ${spring.profiles.active}
+        group: AIStudySystem-project
+        file-extension: yaml
+        refresh-enabled: true
+      shared-configs:
+        - data-id: logging-${spring.profiles.active}.yaml
+          group: AIStudySystem-common
+          refresh: true
+        - data-id: host-${spring.profiles.active}.yaml  #host的配置文件名
+          group: AIStudySystem-common  #组名
+          refresh: true  #是否自动刷新
+
+  #profiles默认为dev
+  profiles:
+    active: dev
+
+
+

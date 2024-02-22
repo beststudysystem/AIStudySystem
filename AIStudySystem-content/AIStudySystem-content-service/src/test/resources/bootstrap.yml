@@ -1,15 +1,21 @@
-
 #微服务配置
-spring:
+spring:  #spring配置
   application:
     name: content-service  #服务名
-  datasource:  #连接的数据库
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.195.1:3306/xcplus_content?serverTimezone=UTC&userUnicode=true&useSSL=false&
-    username: root
-    password: mysql
-# 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
-
-
+  cloud:  #微服务配置
+    nacos:  #nacos配置
+      server-addr: aistudysystem-nacos-server:8848  # 在/etc/hosts中配置
+      config:  #配置文件信息
+        namespace: dev
+        group: AIStudySystem-project
+        file-extension: yaml  #配置文件格式
+        refresh-enabled: true  #是否自动刷新#微服务配置
+        shared-configs: #共享配置
+          - data-id: logging-${spring.profiles.active}.yaml  #引用的配置文件名
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+          - data-id: host-${spring.profiles.active}.yaml  #xcplus_content的配置文件名
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+  profiles:  #环境配置
+    active: dev  #环境名

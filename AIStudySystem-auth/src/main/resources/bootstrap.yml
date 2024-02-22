@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      server-addr: 192.168.101.65:8848
+      discovery:
+        namespace: dev148
+        group: AIStudySystem-project
+      config:
+        namespace: dev148
+        group: AIStudySystem-project
+        file-extension: yaml
+        refresh-enabled: true
+        shared-configs:
+          - data-id: swagger-${spring.profiles.active}.yaml
+            group: AIStudySystem-common
+            refresh: true
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: AIStudySystem-common
+            refresh: true
+          - data-id: host-${spring.profiles.active}.yaml
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+
+  profiles:
+    active: dev

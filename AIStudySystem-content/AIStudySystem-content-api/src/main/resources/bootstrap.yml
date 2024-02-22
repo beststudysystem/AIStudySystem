@@ -1,24 +1,39 @@
-server:
-  servlet:
-    context-path: /content  # 所有服务的根路径
-  port: 63040  #端口
+#server:
+#  servlet:
+#    context-path: /content  # 所有服务的根路径
+#  port: 63040  #端口
+
 #微服务配置
-spring:
+spring:  #spring配置
   application:
     name: content-api  #服务名
-  datasource:  #连接的数据库
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.195.1:3306/xcplus_content?serverTimezone=UTC&userUnicode=true&useSSL=false&
-    username: root
-    password: mysql
-# 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
-
-swagger:
-  title: "AI Study System content management"
-  description: "The Content management system manages information related to the course"
-  base-package: com.AIStudySystem.content
-  enabled: true
-  version: 1.0.0
-
+  cloud:  #微服务配置
+    nacos:  #nacos配置
+      server-addr: aistudysystem-nacos-server:8848  # 在/etc/hosts中配置
+      discovery:  #服务发现
+        namespace: dev  #命名空间
+        group: AIStudySystem-project  #组名
+      config:  #配置文件信息
+        namespace: dev
+        group: AIStudySystem-project
+        file-extension: yaml  #配置文件格式
+        refresh-enabled: true  #是否自动刷新
+        extension-configs:  #扩展配置
+          - data-id: content-service-${spring.profiles.active}.yaml  #引用的配置文件名
+            group: AIStudySystem-project  #组名
+            refresh: true  #是否自动刷新
+        shared-configs:  #共享配置
+          - data-id: swagger-${spring.profiles.active}.yaml  #引用的配置文件名
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+          - data-id: logging-${spring.profiles.active}.yaml  #引用的配置文件名
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+          - data-id: host-${spring.profiles.active}.yaml  #host的配置文件名
+            group: AIStudySystem-common  #组名
+            refresh: true  #是否自动刷新
+          - data-id: freemarker-config-${spring.profiles.active}.yaml
+            group: AIStudySystem-common
+            refresh: true
+  profiles:  #环境配置
+    active: dev  #环境名

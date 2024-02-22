@@ -1,5 +1,6 @@
 package com.AIStudySystem.content.api;
 
+import com.AIStudySystem.content.model.dto.BindTeachplanMediaDto;
 import com.AIStudySystem.content.model.dto.SaveTeachplanDto;
 import com.AIStudySystem.content.model.dto.TeachplanDto;
 import com.AIStudySystem.content.service.TeachplanService;
@@ -36,5 +37,19 @@ public class TeachplanController {
     public void saveTeachplan( @RequestBody SaveTeachplanDto teachplan){
         teachplanService.saveTeachplan(teachplan);
     }
+
+    @ApiOperation(value = "课程计划和媒资信息绑定")
+    @PostMapping("/teachplan/association/media")
+    void associationMedia(@RequestBody BindTeachplanMediaDto bindTeachplanMediaDto){
+        teachplanService.associationMedia(bindTeachplanMediaDto);
+    }
+
+    @ApiOperation("课程计划解除媒资信息绑定")
+    @DeleteMapping("/teachplan/association/media/{teachPlanId}/{mediaId}")
+    public void unassociationMedia(@PathVariable Long teachPlanId, @PathVariable String mediaId) {
+        teachplanService.unassociationMedia(teachPlanId, mediaId);
+    }
+
+
 
 }
